@@ -1,0 +1,58 @@
+﻿@model Professor
+
+@{
+	ViewData["Title"] = "Editing a professor";
+}
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a asp-action="Index">List of professors</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Editing professor info</li>
+	</ol>
+</nav>
+
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Edit">
+			<input type="hidden" asp-for="ProfessorID" />
+			<partial name="_CreateOrEdit" />
+		</form>
+	</div>
+</div>
+
+@section scripts {
+	<script>
+		const submitButton = document.getElementById('submitButton');
+		const fields = [
+			{ element: document.querySelector('#FirstName'), validationElement: document.querySelector('#FirstNameValidation'), errorMessage: 'This field is required' },
+			{ element: document.querySelector('#LastName'), validationElement: document.querySelector('#LastNameValidation'), errorMessage: 'This field is required' },
+			{ element: document.querySelector('#HireDate'), validationElement: document.querySelector('#DateOfEmploymentValidation'), errorMessage: 'This field is required' },
+			{ element: document.querySelector('#Gender'), validationElement: document.querySelector('#GenderValidation'), errorMessage: 'This field is required' }
+		];
+
+		function validateField(field) {
+			if (!field.element.value) {
+				field.element.style.borderColor = 'red';
+				field.validationElement.innerHTML = field.errorMessage;
+				return false;
+			} else {
+				field.element.style.borderColor = 'green';
+				field.validationElement.innerHTML = '';
+				return true;
+			}
+		}
+
+		submitButton.addEventListener('click', e => {
+			let allValid = true;
+			fields.forEach(field => {
+				if (!validateField(field)) {
+					allValid = false;
+				}
+			});
+
+			if (!allValid) {
+				e.preventDefault();
+			}
+		});
+	</script>
+}

@@ -1,0 +1,93 @@
+﻿@model Professor
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+@if (Model != null)
+{
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a asp-action="Index">List of professors</a></li>
+			<li class="breadcrumb-item active" aria-current="page">@Model.FullName</li>
+		</ol>
+	</nav>
+
+	<div>
+		<div style="display:flex; justify-content:space-between">
+			<h4>Professor</h4>
+			<a asp-action="Edit" asp-route-id="@Model.ProfessorID" class="btn btn-primary">Edit</a>
+		</div>
+		<hr />
+		<dl class="dl-horizontal">
+			<dt>
+				ID
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.ProfessorID)
+			</dd>
+			<dt>
+				Full name
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.FullName)
+			</dd>
+			<dt>
+				Gender
+			</dt>
+			<dd>
+				@if (Model.Gender == 'M')
+				{
+					<span>Male</span>
+				}
+				else
+				{
+					<span>Female</span>
+				}
+			</dd>
+			<dt>
+				Email
+			</dt>
+			<dd>
+				@if (!string.IsNullOrEmpty(Model.Email))
+				{
+					<span>@Html.DisplayFor(model => model.Email)</span>
+				}
+				else
+				{
+					<span>No email address provided</span>
+				}
+			</dd>
+			<dt>
+				Phone number
+			</dt>
+			<dd>
+				@if (!string.IsNullOrEmpty(Model.PhoneNumber)) 
+				{
+					<span>@Html.DisplayFor(model => model.PhoneNumber)</span>
+				}
+				else
+				{
+					<span>No phone number provided</span>
+				}
+			</dd>
+			<dt>
+				Assigned class
+			</dt>
+			<dd>
+				@Model.Class.SchoolYear. @Model.Class.ClassName
+			</dd>
+		</dl>
+	</div>
+
+}
+else
+{
+	<div class="alert alert-danger">
+		Professor doesn't exist.
+	</div>
+
+}
+

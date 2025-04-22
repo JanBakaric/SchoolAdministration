@@ -1,0 +1,32 @@
+﻿@model List<Class>
+
+<h1>Classes</h1>
+<div style="margin-top: 20px; margin-bottom: 10px;">
+	<partial name="_ClassFilter" model="new ClassFilterModel()" />
+</div>
+
+<div id="results">
+	<partial name="_IndexTable" model="Model" />
+</div>
+
+@section scripts {
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#searchForm').submit(function (event) {
+				event.preventDefault();
+
+				$.ajax({
+					url: '@Url.Action("Search", "Class")',
+					type: 'POST',
+					data: $(this).serialize(),
+					success: function (data) {
+						$('#results').html(data);
+					},
+					error: function (xhr, status, error) {
+						alert("An error has occurred while searching.");
+					}
+				});
+			});
+		});
+	</script>
+}

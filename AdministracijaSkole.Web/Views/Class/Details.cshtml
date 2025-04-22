@@ -1,0 +1,103 @@
+﻿@model Class
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+@if (Model != null)
+{
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a asp-action="Index">List of classes</a></li>
+			<li class="breadcrumb-item active" aria-current="page">@Model.SchoolYear @Model.ClassName</li>
+		</ol>
+	</nav>
+
+	<div>
+		<div style="display:flex; justify-content:space-between">
+			<h4>Class</h4>
+			<a asp-action="Edit" asp-route-id="@Model.ClassID" class="btn btn-primary">Edit</a>
+		</div>
+		<hr />
+		<dl class="dl-horizontal">
+			<dt>
+				ID
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.ClassID)
+			</dd>
+			<dt>
+				School year
+			</dt>
+			<dd>
+				@(Model.ClassID != 1 ? Html.DisplayFor(model => model.SchoolYear) : "-")
+			</dd>
+			<dt>
+				Class name
+			</dt>
+			<dd>
+				@(Model.ClassID != 1 ? Model.ClassName.ToUpper() + " razred" : "UNASSIGNED")
+			</dd>
+			<dt>
+				Name of professor
+			</dt>
+			<dd>
+				@(Model.ClassID != 1 ? (Model.Professor != null ? Model.Professor.FullName : "Professor not assigned to this class") : "-")
+			</dd>
+			<hr />
+			<dd>
+				<h2>Enrolled students</h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Student</th>
+							<th>Email</th>
+							<th>Date of Birth</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var student in Model.Students)
+						{
+							<tr style="opacity:0.5" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
+								<td>
+									<a 
+									   asp-action="Details" 
+									   asp-controller="Student" 
+									   asp-route-id="@student.StudentID" 
+									   style="text-decoration:none"
+									   onmousedown="this.parentElement.parentElement.style.backgroundColor='lightblue'"
+									   onmouseup="this.parentElement.parentElement.style.backgroundColor='white'"
+									   onmousemove="this.parentElement.parentElement.style.backgroundColor='white'">
+										@student.FullName
+									</a>
+								</td>
+								<td>
+									@if (!string.IsNullOrEmpty(student.Email))
+									{
+										<span>@student.Email</span>
+									}
+									else
+									{
+										<span>No email address provided</span>
+									}
+								</td>
+								<td>@DateOnly.FromDateTime(student.DateOfBirth).ToLongDateString()</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</dd>
+		</dl>
+	</div>
+
+}
+else
+{
+	<div class="alert alert-danger">
+		Class doesn't exist.
+	</div>
+
+}
+

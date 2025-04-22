@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MessageViewModel>
+
+@{
+    ViewData["Title"] = "Sent Messages";
+}
+
+<h2>Sent Messages</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Receiver</th>
+                <th>Receiver Role</th>
+                <th>Subject</th>
+                <th>Sent At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in Model)
+            {
+                <tr>
+                    <td>@message.ReceiverUserName</td>
+                    <td>@message.ReceiverRole</td>
+                    <td>@message.Subject</td>
+                    <td>@message.SentAt.ToString("g")</td>
+                    <td>
+                        <a href="@Url.Action("View", "Messages", new { id = message.Id })" class="btn btn-info">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>You have not sent any messages yet.</p>
+}
+
+<div>
+    <a class="btn btn-secondary" href="@Url.Action("Inbox", "Messages")">Back to Inbox</a>
+</div>
