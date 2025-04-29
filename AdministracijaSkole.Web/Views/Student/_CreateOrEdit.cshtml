@@ -1,0 +1,62 @@
+﻿@model Student
+
+<div class="form-group">
+	<label class="control-label">First name</label>
+	<input asp-for="FirstName" class="form-control" required/>
+	<span id="FirstNameValidation" class="text-danger"></span>
+</div>
+<div class="form-group">
+	<label class="control-label">Last name</label>
+	<input asp-for="LastName" class="form-control" required />
+	<span id="LastNameValidation" class="text-danger"></span>
+</div>
+
+@{
+	var pattern = System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower();
+	pattern = pattern.Replace("DD", "D").Replace("D", "DD");
+	pattern = pattern.Replace("MM", "M").Replace("M", "MM");
+}
+<div class="form-group">
+	<label class="control-label">Date of birth</label>
+
+	<div class="input-group date inp-datepicker" data-format="@pattern">
+		<input type="text" class="form-control" asp-for="DateOfBirth" required />
+		<span class="input-group-append">
+			<span class="input-group-text bg-light d-block">
+				<i class="fa fa-calendar"></i>
+			</span>
+		</span>
+	</div>
+	<span id="DateOfBirthValidation" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+	<label class="control-label">Gender</label>
+	<select asp-for="Gender" class="form-control" required>
+		<option value="">- Choose -</option>
+		<option value="M">Male</option>
+		<option value="F">Female</option>
+	</select>
+	<span id="GenderValidation" class="text-danger"></span>
+</div>
+<div class="form-group">
+	<label class="control-label">Address</label>
+	<input asp-for="Address" class="form-control" />
+</div>
+<div class="form-group">
+	<label asp-for="Email" class="control-label"></label>
+	<input asp-for="Email" class="form-control" />
+</div>
+<div class="form-group">
+	<label class="control-label">Phone number</label>
+	<input asp-for="PhoneNumber" class="form-control" />
+</div>
+<div class="form-group">
+	<label class="control-label">Class</label>
+	<select asp-for="ClassID" asp-items="ViewBag.PossibleClasses" class="form-control" required></select>
+	<span id="ClassIDValidation" class="text-danger"></span>
+</div>
+<br />
+<div class="form-group">
+	<input id="submitButton" type="submit" value="Save changes" class="btn btn-outline-success" />
+</div>

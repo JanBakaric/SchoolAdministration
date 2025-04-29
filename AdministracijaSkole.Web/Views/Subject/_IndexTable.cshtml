@@ -1,0 +1,37 @@
+﻿@model List<Subject>
+
+<table id="tbl-cls" style="margin-top: 20px;" class="table table-condensed">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Class</th>
+			<th>Professor</th>
+			<th>Number of enrolled</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var subject in Model)
+		{
+			<tr id="class-row-@subject.SubjectID" style="opacity:0.5" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
+				<td>@subject.SubjectID</td>
+				<td>
+					<a 
+					   asp-action="Details"
+					   asp-route-id="@subject.SubjectID"
+					   style="text-decoration:none"
+					   onmousedown="this.parentElement.parentElement.style.backgroundColor='lightblue'"
+					   onmouseup="this.parentElement.parentElement.style.backgroundColor='white'"
+					   onmousemove="this.parentElement.parentElement.style.backgroundColor='white'">
+						@subject.SubjectName
+					</a>
+				</td>
+				<td>@(subject.Professor != null ? subject.Professor.FullName : "Professor not assigned to this class")</td>
+				<td>@subject.Students?.Count</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@subject.SubjectID" class="btn btn-primary" style="padding:2px; width:60px">Edit</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

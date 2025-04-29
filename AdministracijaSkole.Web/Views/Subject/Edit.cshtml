@@ -1,0 +1,247 @@
+﻿@model Subject
+
+@{
+	ViewData["Title"] = "Editing a subject";
+}
+
+<h2>Editing</h2>
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a asp-action="Index">List of subjects</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Editing subject info</li>
+	</ol>
+</nav>
+
+<hr />
+
+<div class="row">
+	<h4>Subject</h4>
+	<div class="col-md-4">
+		<form asp-action="Edit">
+			<input type="hidden" asp-for="SubjectID" />
+			<div class="form-group">
+				<label asp-for="SubjectName" style="font-weight:bold" class="control-label">Subject name</label>
+				<p name="SubjectName" value="Subject">@Model.SubjectName</p>
+				<input type="hidden" asp-for="SubjectName" />
+			</div>
+			<div class="form-group">
+				<label asp-for="Description" style="font-weight:bold" class="control-label">Description of subject:</label>
+				<p name="Description" value="Subject">@Model.Description</p>
+				<input type="hidden" asp-for="Description" />
+			</div>
+			<div class="form-group">
+				<label style="font-weight:bold" class="control-label">Name of professor </label>
+				<select asp-for="ProfessorID" asp-items="ViewBag.PossibleProfessors" class="form-control" required></select>
+				<span id="ProfessorValidation" class="text-danger"></span>
+			</div>
+			<br />
+			<div class="form-group">
+				<button type="submit" id="submitButton" class="btn btn-outline-success">Save changes</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<br />
+<hr />
+<h2>Enrolled students</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Student</th>
+			<th>Email</th>
+			<th>Date of Birth</th>
+			<th style="display:flex;justify-content:space-between;">
+				<button onclick="getStudents()" class="btn btn-success" style="padding:5px;width:110px">Add students</button>
+				<div id="addStudentModal" class="modal" tabindex="-1" role="dialog">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Add student(s) to subject</h5>
+							</div>
+							<div class="modal-body">
+								<ul id="studentList" class="list-group">
+								</ul>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								<button type="button" onclick="addStudents()" class="btn btn-primary">Add Selected Students</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button onclick="removeStudents()" class="btn btn-danger btn-delete" style="padding:5px;width:110px">Remove all</button>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var student in Model.Students)
+		{
+			<tr id="student-row-@student.StudentID" style="opacity:0.5" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
+				<td>
+					<a asp-action="Details"
+					   asp-controller="Student"
+					   asp-route-id="@student.StudentID"
+					   style="text-decoration:none"
+					   onmousedown="this.parentElement.parentElement.style.backgroundColor='lightblue'"
+					   onmouseup="this.parentElement.parentElement.style.backgroundColor='white'"
+					   onmousemove="this.parentElement.parentElement.style.backgroundColor='white'">
+						@student.FullName
+					</a>
+				</td>
+				<td>
+					@if (!string.IsNullOrEmpty(student.Email))
+					{
+						<span>@student.Email</span>
+					}
+					else
+					{
+						<span>No email address provided</span>
+					}
+				</td>
+				<td>@DateOnly.FromDateTime(student.DateOfBirth).ToLongDateString()</td>
+				<td style="display:flex;justify-content:flex-end">
+					<button type="button" onclick="removeStudent(@student.StudentID)" class="btn btn-danger btn-delete" style="padding:5px;width:110px">Remove</button>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+@section scripts {
+	<script>
+		const submitButton = document.getElementById('submitButton');
+		const fields = [
+			{ element: document.querySelector('#ProfessorID'), validationElement: document.querySelector('#ProfessorValidation'), errorMessage: 'This field is required' }
+		];
+
+		function validateField(field) {
+			if (!field.element.value) {
+				field.element.style.borderColor = 'red';
+				field.validationElement.innerHTML = field.errorMessage;
+				return false;
+			} else {
+				field.element.style.borderColor = 'green';
+				field.validationElement.innerHTML = '';
+				return true;
+			}
+		}
+
+		submitButton.addEventListener('click', e => {
+			let allValid = true;
+			fields.forEach(field => {
+				if (!validateField(field)) {
+					allValid = false;
+				}
+			});
+
+			if (!allValid) {
+				e.preventDefault();
+			}
+		});
+	</script>
+
+	<script>
+		function getStudents() {
+			$.ajax({
+				url: `/Api/Student/Available-Subject/${@Model.SubjectID}`,
+				type: 'POST',
+				contentType: 'application/json',
+				success: function (students) {
+					var studentList = $('#studentList');
+					studentList.empty();
+
+					if (students.length === 0) {
+						$('#studentList').html('<p style="font-weight:25">No assignable students</p>')
+					}
+					else {
+						students.forEach(function (student) {
+							var formattedDate = new Date(student.dateOfBirth);
+							formattedDate = formattedDate.toLocaleDateString('hr-HR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+							var studentItem = `
+								<li id="list-row-${student.studentID}" class="list-group-item">
+									<input type="checkbox" class="student-checkbox" value="${student.studentID}">
+									<span style="font-weight:normal;padding-left:5px;">${student.firstName} ${student.lastName}</span>
+									<span style="font-weight:25;float:right;">DoB: ${formattedDate} | ID: ${student.studentID}</span>
+								</li>`;
+							studentList.append(studentItem);
+						});
+					}
+
+					$('#addStudentModal').modal('show');
+				},
+				error: function (xhr, status, error) {
+					alert('An error occurred while fetching available students.');
+				}
+			});
+		}
+	</script>
+
+	<script>
+		function addStudents() {
+			var selectedStudentIds = [];
+			$('.student-checkbox:checked').each(function () {
+				selectedStudentIds.push($(this).val());
+			});
+
+			if (selectedStudentIds.length > 0) {
+				selectedStudentIds.forEach(function (studentId) {
+					$.ajax({
+						url: `../Enroll-Students/${@Model.SubjectID}`,
+						type: 'POST',
+						contentType: 'application/json',
+						data: JSON.stringify(studentId),
+						error: function (xhr, status, error) {
+							alert("An error occurred while enrolling students into the subject.");
+						}
+					});
+				});
+			} else {
+				alert('No students selected.');
+			}
+
+			alert("Students have been successfully enrolled into the subject.");
+			location.reload();
+		}
+	</script>
+
+	<script type="text/javascript">
+		function removeStudent(studentId) {
+			$.ajax({
+				url: `/Api/Student/${studentId}`,
+				type: 'POST',
+				contentType: 'application/json',
+				success: function (studentData) {
+					if (confirm("Are you sure you want to remove student " + studentData.firstName + " " + studentData.lastName + "?")) {
+						$.ajax({
+							url: `/Api/Subject/Delist-Student/${@Model.SubjectID}`,
+							type: 'POST',
+							contentType: 'application/json',
+							data: JSON.stringify(studentId),
+							success: function () {
+								$("#student-row-" + studentId).remove();
+							},
+							error: function (xhr, status, error) {
+								alert("An error has occured while trying to remove the student.");
+							}
+						});
+					}
+				},
+				error: function (xhr, status, error) {
+					alert("An error has occured while trying to fetch student data.");
+				}
+			});
+		}
+	</script>
+
+	<script type="text/javascript">
+		function removeStudents() {
+			$('tbody tr').each(function () {
+				var studentId = $(this).attr('id').replace('student-row-', '');
+				removeStudent(studentId);
+			});
+		}
+	</script>
+}

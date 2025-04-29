@@ -1,0 +1,62 @@
+﻿@model List<Professor>
+
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+<table id="tbl-professors" style="margin-top: 20px;" class="table table-condensed">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Professor</th>
+			<th>Date of employment</th>
+			<th>Email</th>
+			<th>Phone number</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var professor in Model)
+		{
+			<tr id="professor-row-@professor.ProfessorID" style="opacity:0.5" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
+				<td>@professor.ProfessorID</td>
+				<td>
+					<a 
+					   asp-action="Details" 
+					   asp-route-id="@professor.ProfessorID"
+					   style="text-decoration:none"
+					   onmousedown="this.parentElement.parentElement.style.backgroundColor='lightblue'"
+					   onmouseup="this.parentElement.parentElement.style.backgroundColor='white'"
+					   onmousemove="this.parentElement.parentElement.style.backgroundColor='white'">
+						@professor.FullName
+					</a>
+				</td>
+				<td>@DateOnly.FromDateTime(professor.HireDate).ToLongDateString()</td>
+				<td>
+					@if (!string.IsNullOrEmpty(professor.Email))
+					{
+						<span>@professor.Email</span>
+					}
+					else
+					{
+						<span>No email address provided</span>
+					}
+				</td>
+				<td>
+					@if (!string.IsNullOrEmpty(professor.PhoneNumber))
+					{
+						<span>@professor.PhoneNumber</span>
+					}
+					else
+					{
+						<span>No phone number provided</span>
+					}
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@professor.ProfessorID" class="btn btn-primary" style="padding:2px; width:60px">Edit</a>
+					<button type="button" onclick="deleteProfessor(@professor.ProfessorID)" class="btn btn-danger btn-delete" style="padding:2px; width:60px">Delete</button>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

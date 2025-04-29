@@ -1,0 +1,56 @@
+﻿@model List<Professor>
+
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+<h1>Professors</h1>
+<div style="margin-top: 20px; margin-bottom: 10px;">
+	<partial name="_ProfessorFilter" model="new ProfessorFilterModel()" />
+</div>
+
+<div id="results">
+	<partial name="_IndexTable" model="Model" />
+</div>
+
+@section scripts {
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#searchForm').submit(function (event) {
+				event.preventDefault();
+
+				$.ajax({
+					url: '@Url.Action("Search", "Professor")',
+					type: 'POST',
+					data: $(this).serialize(),
+					success: function (data) {
+						$('#results').html(data);
+					},
+					error: function (xhr, status, error) {
+						alert("An error has occurred while searching.");
+					}
+				});
+			});
+		});
+	</script>
+
+	<script type="text/javascript">
+		function deleteProfessor(professorId) {
+			if (confirm (
+				"Are you sure that you want to remove this professor?"
+			)) {
+				$.ajax({
+					url: `/Api/Professor/${professorId}`,
+					type: 'DELETE',
+					success: function (result) {
+						alert("This professor has successfully been removed.");
+						$("#professor-row-" + professorId).remove();
+					},
+					error: function (xhr, status, error) {
+						alert("An error has occured while trying to remove the professor.");
+					}
+				});
+			}
+		}
+	</script>
+}

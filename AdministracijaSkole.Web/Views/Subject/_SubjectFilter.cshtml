@@ -1,0 +1,20 @@
+﻿@using AdministracijaSkole.Web.Models
+
+@model SubjectFilterModel
+
+<form action="@Url.Action("Index")" method="post">
+	<div class="row">
+		<div class="col">
+			<input asp-for="SubjectName" class="form-control" type="text" placeholder="Name of subject" />
+		</div>
+		<div class="col">
+			<input asp-for="ProfessorName" class="form-control" type="text" placeholder="Name of professor" />
+		</div>
+		<div class="col">
+			<input asp-for="NumberOfStudents" class="form-control" type="text" placeholder="Number of students" />
+		</div>
+		<div class="col">
+			<button type="submit" class="btn btn-outline-info">Search</button>
+		</div>
+	</div>
+</form>

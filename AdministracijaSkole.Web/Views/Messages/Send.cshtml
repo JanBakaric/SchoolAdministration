@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Send New Message";
+}
+
+<h2>Send New Message</h2>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<form method="post" action="@Url.Action("Send", "Messages")">
+    @Html.AntiForgeryToken()  <!-- This generates the anti-forgery token -->
+
+    <div class="form-group">
+        <label for="ReceiverId">Receiver:</label>
+        <select id="ReceiverId" name="receiverId" class="form-control">
+            <option value="">Select a user</option>
+            @foreach (var user in ViewBag.Users)
+            {
+                <option value="@user.Value">@user.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Subject">Subject:</label>
+        <input type="text" id="Subject" name="subject" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Body">Message Body:</label>
+        <textarea id="Body" name="body" class="form-control" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
+
+<p>
+    <a class="btn btn-secondary" asp-controller="Messages" asp-action="Inbox">Back to Inbox</a>
+</p>

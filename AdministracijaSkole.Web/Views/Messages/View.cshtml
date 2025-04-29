@@ -1,0 +1,22 @@
+﻿@model MessageViewModel
+
+@{
+    ViewData["Title"] = "Message Details";
+}
+
+<h2>@Model.Subject</h2>
+
+<div>
+    <p><strong>From:</strong> @Model.SenderUserName (@Model.SenderRole)</p>
+    <p><strong>To:</strong> @Model.ReceiverUserName (@Model.ReceiverRole)</p>
+    <p><strong>Sent At:</strong> @Model.SentAt.ToString("g")</p>
+</div>
+
+<div class="message-body">
+    <p><strong>Message:</strong></p>
+    <p>@Model.Body</p>
+</div>
+
+<div class="mt-3">
+    <a class="btn btn-secondary" href="@Url.Action("Inbox", "Messages")">Back to Inbox</a>
+</div>

@@ -1,0 +1,40 @@
+﻿@model List<Class>
+
+<table id="tbl-cls" style="margin-top: 20px;" class="table table-condensed">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Class</th>
+			<th>Professor</th>
+			<th>Number of enrolled</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var cl in Model)
+		{
+			<tr id="class-row-@cl.ClassID" style="opacity:0.5" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
+				<td>@cl.ClassID</td>
+				<td>
+					<a 
+					   asp-action="Details"
+					   asp-route-id="@cl.ClassID"
+					   style="text-decoration:none"
+					   onmousedown="this.parentElement.parentElement.style.backgroundColor='lightblue'"
+					   onmouseup="this.parentElement.parentElement.style.backgroundColor='white'"
+					   onmousemove="this.parentElement.parentElement.style.backgroundColor='white'">
+						@(cl.ClassID != 1 ? (@cl.SchoolYear + ". " + @cl.ClassName) : "UNASSIGNED")
+					</a>
+				</td>
+				<td>@(cl.ClassID != 1 ? (cl.Professor != null ? cl.Professor.FullName : "Professor not assigned to this class") : "-")</td>
+				<td>@cl.Students?.Count</td>
+				<td>
+					@if (cl.ClassID != 1)
+					{
+						<a asp-action="Edit" asp-route-id="@cl.ClassID" class="btn btn-primary" style="padding:2px; width:60px">Edit</a>
+					}
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

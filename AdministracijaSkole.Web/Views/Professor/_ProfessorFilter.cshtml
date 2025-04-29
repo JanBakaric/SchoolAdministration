@@ -1,0 +1,18 @@
+﻿@using AdministracijaSkole.Web.Models
+
+@model ProfessorFilterModel
+
+<form id="searchForm">
+    <div class="row">
+        <div class="col">
+            <input type="text" asp-for="FullName" class="form-control" placeholder="Full name" />
+        </div>
+        <div class="col">
+            <input type="text" asp-for="Email" class="form-control" placeholder="Email" />
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-outline-info">Search</button>
+            <a asp-action="Create" class="btn btn-success" style="margin-left: 10px">Add new</a>
+        </div>
+    </div>
+</form>

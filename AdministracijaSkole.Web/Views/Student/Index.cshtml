@@ -1,0 +1,52 @@
+﻿@model List<Student>
+
+<h1>Students</h1>
+<div style="margin-top: 20px; margin-bottom: 10px;">
+	<partial name="_StudentFilter" model="new StudentFilterModel()" />
+</div>
+
+<div id="results">
+	<partial name="_IndexTable" model="Model" />
+</div>
+
+@section scripts {
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#searchForm').submit(function (event) {
+				event.preventDefault();
+
+				$.ajax({
+					url: '@Url.Action("Search", "Student")',
+					type: 'POST',
+					data: $(this).serialize(),
+					success: function (data) {
+						$('#results').html(data);
+					},
+					error: function (xhr, status, error) {
+						alert("An error has occurred while searching.");
+					}
+				});
+			});
+		});
+	</script>
+
+	<script type="text/javascript">
+		function deleteStudent(studentId) {
+			if (confirm(
+				"Are you sure that you want to remove this student?"
+			)) {
+				$.ajax({
+					url: `/Api/Student/${studentId}`,
+					type: 'DELETE',
+					success: function (result) {
+						alert("This student has successfully been removed.");
+						$("#student-row-" + studentId).remove();
+					},
+					error: function (xhr, status, error) {
+						alert("An error has occured while trying to remove the student.");
+					}
+				});
+			}
+		}
+	</script>
+}
