@@ -99,51 +99,124 @@
 	</div>
 
 	<br />
-	
-	<h3>Grades</h3>
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th>Subject</th>
-				<th>Grade</th>
-				<th>Date</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (var grade in Model.Grades)
-			{
-				<tr>
-					<td>@grade.SubjectName</td>
-					<td>@grade.Value</td>
-					<td>@grade.DateAwarded.ToString("dd.MM.yyyy")</td>
-				</tr>
-			}
-		</tbody>
-	</table>
 
-	<hr />
+    <ul class="nav nav-tabs" id="studentTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="grades-tab" data-bs-toggle="tab" data-bs-target="#grades" type="button" role="tab">Grades</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="presence-tab" data-bs-toggle="tab" data-bs-target="#presence" type="button" role="tab">Attendance</button>
+        </li>
+    </ul>
 
-	@if (User.IsInRole("Professor"))
-	{
-		<div style="float:right">
-			<form asp-action="AddGrade" asp-controller="Student" method="post" style="display:flex; flex-direction:row">
-				<input type="hidden" name="studentId" value="@Model.Student.StudentID" />
+    <div class="tab-content mt-3" id="studentTabsContent">
+        <!-- Grades Tab -->
+        <div class="tab-pane fade show active" id="grades" role="tabpanel" aria-labelledby="grades-tab">
+            @if (Model.GroupedGrades.Any())
+            {
+                foreach (var subjectGroup in Model.GroupedGrades)
+                {
+                    <h4>@subjectGroup.SubjectName</h4>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Grade</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var grade in subjectGroup.Grades)
+                            {
+                                <tr>
+                                    <td>@grade.Value</td>
+                                    <td>@grade.DateAwarded.ToString("dd.MM.yyyy")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            }
+            else
+            {
+                <p>No grades available.</p>
+            }
 
-				<div class="form-group">
-					<select name="value" style="width:150px; margin-top: 8px" class="form-control" required>
-						<option value="">Select...</option>
-						<option value="1">1 - Insufficient</option>
-						<option value="2">2 - Sufficient</option>
-						<option value="3">3 - Good</option>
-						<option value="4">4 - Very good</option>
-						<option value="5">5 - Excellent</option>
-					</select>
-				</div>
+            @if (User.IsInRole("Professor"))
+            {
+                <form asp-action="AddGrade" method="post" class="mt-3 d-flex">
+                    <input type="hidden" name="studentId" value="@Model.Student.StudentID" />
+                    <select name="value" class="form-control me-2" required style="width: 200px;">
+                        <option value="">Select grade...</option>
+                        <option value="1">1 - Insufficient</option>
+                        <option value="2">2 - Sufficient</option>
+                        <option value="3">3 - Good</option>
+                        <option value="4">4 - Very Good</option>
+                        <option value="5">5 - Excellent</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Add Grade</button>
+                </form>
+            }
+        </div>
 
-				<button type="submit" style="float:right; margin-top:0px; margin-left: 20px" class="btn btn-primary mt-2">Add grade</button>
-			</form>
-		</div>
-	}
+        <!-- Attendance Tab -->
+        <div class="tab-pane fade" id="presence" role="tabpanel" aria-labelledby="presence-tab">
+            @if (Model.Presences.Any())
+            {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Present</th>
+                            <th>Excused</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var presence in Model.Presences.OrderByDescending(p => p.PresenceDate))
+                        {
+                            <tr>
+                                <td>@presence.PresenceDate.ToString("dd.MM.yyyy")</td>
+                                <td>@(presence.IsPresent ? "Yes" : "No")</td>
+                                <td>@(presence.IsPresent ? "-" : (presence.IsExcused ? "Yes" : "No"))</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No attendance records found.</p>
+            }
+
+            @if (User.IsInRole("Professor"))
+            {
+                <form asp-action="AddPresence" method="post" class="mt-3 row g-2">
+                    <input type="hidden" name="studentId" value="@Model.Student.StudentID" />
+
+                    <div class="col-md-3">
+                        <label class="form-label">Date</label>
+                        <input type="date" name="presenceDate" class="form-control" required />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Is Present</label>
+                        <select name="isPresent" class="form-control">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Is Excused</label>
+                        <select name="isExcused" class="form-control">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 align-self-end">
+                        <button type="submit" class="btn btn-success w-100">Add Presence</button>
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
 }
 else
 {
@@ -152,4 +225,3 @@ else
 	</div>
 
 }
-

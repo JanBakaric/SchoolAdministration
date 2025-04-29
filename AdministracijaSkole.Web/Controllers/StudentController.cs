@@ -90,39 +90,54 @@ public class StudentController
 	//DETAILS STUDENT
 	//
 
-	[ActionName(nameof(Details)), HttpGet("{id}"), AllowAnonymous]
-    public async Task<IActionResult> Details(int? id = null)
+	[ActionName(nameof(Details)), HttpGet("{id}")]
+	public async Task<IActionResult> Details(int? id = null)
 	{
 		var student = await _dbContext.Students
-            .Include(s => s.Class)
-            .FirstOrDefaultAsync(s => s.StudentID == id);
+			.Include(s => s.Class)
+			.FirstOrDefaultAsync(s => s.StudentID == id);
 
-        if (student == null)
-        {
-            return NotFound();
-        }
+		if (student == null)
+		{
+			return NotFound();
+		}
 
-        var grades = await _dbContext.Grades
-        .Include(g => g.Subject)
-        .Where(g => g.StudentID == id)
-        .Select(g => new StudentDetailsViewModel.GradeDisplay
-        {
-            SubjectName = g.Subject.SubjectName,
-            Value = g.GradeValue,
-            DateAwarded = g.GradeDateTime
-        })
-        .ToListAsync();
+		var grades = await _dbContext.Grades
+			.Where(g => g.StudentID == id)
+	        .Include(g => g.Subject)
+	        .GroupBy(g => g.Subject.SubjectName)
+	        .Select(g => new StudentDetailsViewModel.GradesBySubject
+	        {
+	        	SubjectName = g.Key,
+	        	Grades = g.Select(x => new StudentDetailsViewModel.GradeDisplay
+	        	{
+	        		Value = x.GradeValue,
+	        		DateAwarded = x.GradeDateTime
+	        	}).ToList()
+	        })
+	        .ToListAsync();
 
-        var viewModel = new StudentDetailsViewModel
-        {
-            Student = student,
-            Grades = grades
-        };
+		var presences = await _dbContext.Presences
+			.Where(p => p.StudentID == id)
+			.Select(p => new StudentDetailsViewModel.PresenceDisplay
+			{
+				PresenceDate = p.PresenceDate,
+				IsPresent = p.IsPresent,
+				IsExcused = p.IsExcused
+			})
+			.ToListAsync();
 
-        return View(viewModel);
-    }
+		var viewModel = new StudentDetailsViewModel
+		{
+			Student = student,
+			GroupedGrades = grades,
+			Presences = presences
+		};
 
-	[Authorize(Roles = "Professor"), HttpPost]
+		return View(viewModel);
+	}
+
+	[Authorize(Roles = "Professor"), HttpPost("AddGrade")]
 	public async Task<IActionResult> AddGrade([FromForm] int studentId, [FromForm] int value)
 	{
 		var userId = _userManager.GetUserId(User);
@@ -156,6 +171,40 @@ public class StudentController
 		};
 
 		_dbContext.Grades.Add(grade);
+		await _dbContext.SaveChangesAsync();
+
+		return RedirectToAction("Details", new { id = studentId });
+	}
+
+	[Authorize(Roles = "Professor"), HttpPost("AddPresence")]
+	public async Task<IActionResult> AddPresence
+    (
+        [FromForm] int studentId, 
+        [FromForm] DateTime presenceDate, 
+        [FromForm] bool isPresent, 
+        [FromForm] bool isExcused
+    )
+	{
+		var userId = _userManager.GetUserId(User);
+		var professor = await _dbContext.Professors
+			.FirstOrDefaultAsync(p => p.UserID == userId);
+		if (professor == null)
+			return Unauthorized();
+
+		var student = await _dbContext.Students
+			.FirstOrDefaultAsync(s => s.StudentID == studentId);
+		if (student == null)
+			return NotFound();
+
+		var presence = new Presence
+		{
+			StudentID = studentId,
+			PresenceDate = presenceDate,
+			IsPresent = isPresent,
+			IsExcused = isExcused
+		};
+
+		_dbContext.Presences.Add(presence);
 		await _dbContext.SaveChangesAsync();
 
 		return RedirectToAction("Details", new { id = studentId });
