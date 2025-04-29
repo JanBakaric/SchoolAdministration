@@ -1,4 +1,4 @@
-﻿@model Student
+﻿@model StudentDetailsViewModel
 
 @{
 	ViewData["Title"] = "Details";
@@ -11,14 +11,17 @@
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a asp-action="Index">List of students</a></li>
-			<li class="breadcrumb-item active" aria-current="page">@Model.FullName</li>
+			<li class="breadcrumb-item active" aria-current="page">@Model.Student.FullName</li>
 		</ol>
 	</nav>
 
 	<div>
 		<div style="display:flex; justify-content:space-between">
 			<h4>Student</h4>
-			<a asp-action="Edit" asp-route-id="@Model.StudentID" class="btn btn-primary">Edit</a>
+			@if (User.IsInRole("Administrator"))
+			{
+				<a asp-action="Edit" asp-route-id="@Model.Student.StudentID" class="btn btn-primary">Edit</a>
+			}
 		</div>
 		<hr />
 		<dl class="dl-horizontal">
@@ -26,19 +29,19 @@
 				ID
 			</dt>
 			<dd>
-				@Html.DisplayFor(model => model.StudentID)
+				@Html.DisplayFor(model => model.Student.StudentID)
 			</dd>
 			<dt>
 				Full name
 			</dt>
 			<dd>
-				@Html.DisplayFor(model => model.FullName)
+				@Html.DisplayFor(model => model.Student.FullName)
 			</dd>
 			<dt>
 				Gender
 			</dt>
 			<dd>
-				@if (Model.Gender == 'M')
+				@if (Model.Student.Gender == 'M')
 				{
 					<span>Male</span>
 				}
@@ -51,9 +54,9 @@
 				Email
 			</dt>
 			<dd>
-				@if (!string.IsNullOrEmpty(Model.Email))
+				@if (!string.IsNullOrEmpty(Model.Student.Email))
 				{
-					<span>@Html.DisplayFor(model => model.Email)</span>
+					<span>@Html.DisplayFor(model => model.Student.Email)</span>
 				}
 				else
 				{
@@ -64,9 +67,9 @@
 				Address
 			</dt>
 			<dd>
-				@if (!string.IsNullOrEmpty(Model.Address))
+				@if (!string.IsNullOrEmpty(Model.Student.Address))
 				{
-					<span>@Html.DisplayFor(model => model.Address)</span>
+					<span>@Html.DisplayFor(model => model.Student.Address)</span>
 				}
 				else
 				{
@@ -77,9 +80,9 @@
 				Phone number
 			</dt>
 			<dd>
-				@if (!string.IsNullOrEmpty(Model.PhoneNumber))
+				@if (!string.IsNullOrEmpty(Model.Student.PhoneNumber))
 				{
-					<span>@Html.DisplayFor(model => model.PhoneNumber)</span>
+					<span>@Html.DisplayFor(model => model.Student.PhoneNumber)</span>
 				}
 				else
 				{
@@ -90,11 +93,57 @@
 				Class
 			</dt>
 			<dd>
-				@Model.Class.SchoolYear. @Model.Class.ClassName
+				@Model.Student.Class.SchoolYear. @Model.Student.Class.ClassName
 			</dd>
 		</dl>
 	</div>
 
+	<br />
+	
+	<h3>Grades</h3>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Subject</th>
+				<th>Grade</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var grade in Model.Grades)
+			{
+				<tr>
+					<td>@grade.SubjectName</td>
+					<td>@grade.Value</td>
+					<td>@grade.DateAwarded.ToString("dd.MM.yyyy")</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+	<hr />
+
+	@if (User.IsInRole("Professor"))
+	{
+		<div style="float:right">
+			<form asp-action="AddGrade" asp-controller="Student" method="post" style="display:flex; flex-direction:row">
+				<input type="hidden" name="studentId" value="@Model.Student.StudentID" />
+
+				<div class="form-group">
+					<select name="value" style="width:150px; margin-top: 8px" class="form-control" required>
+						<option value="">Select...</option>
+						<option value="1">1 - Insufficient</option>
+						<option value="2">2 - Sufficient</option>
+						<option value="3">3 - Good</option>
+						<option value="4">4 - Very good</option>
+						<option value="5">5 - Excellent</option>
+					</select>
+				</div>
+
+				<button type="submit" style="float:right; margin-top:0px; margin-left: 20px" class="btn btn-primary mt-2">Add grade</button>
+			</form>
+		</div>
+	}
 }
 else
 {

@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AdministracijaSkole.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b2738faffe2966ce5f04e2c86cedc5138b8a2bd2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4d586583781eeccc8e0cb5aa5b26740af8625c8")]
 [assembly: System.Reflection.AssemblyProductAttribute("AdministracijaSkole.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AdministracijaSkole.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -153,16 +153,15 @@ namespace AdministracijaSkole.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("GradeTopic")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GradeValue")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StudentID")
+                    b.Property<int>("StudentID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SubjectID")
+                    b.Property<int>("SubjectID")
                         .HasColumnType("int");
 
                     b.HasKey("GradeID");
@@ -273,6 +272,7 @@ namespace AdministracijaSkole.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProfessorID"));
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -321,6 +321,7 @@ namespace AdministracijaSkole.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -510,12 +511,16 @@ namespace AdministracijaSkole.DAL.Migrations
             modelBuilder.Entity("AdministracijaSkole.Model.Grade", b =>
                 {
                     b.HasOne("AdministracijaSkole.Model.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentID");
+                        .WithMany("Grades")
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AdministracijaSkole.Model.Subject", "Subject")
                         .WithMany()
-                        .HasForeignKey("SubjectID");
+                        .HasForeignKey("SubjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Student");
 
@@ -661,6 +666,11 @@ namespace AdministracijaSkole.DAL.Migrations
                     b.Navigation("Class");
 
                     b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("AdministracijaSkole.Model.Student", b =>
+                {
+                    b.Navigation("Grades");
                 });
 #pragma warning restore 612, 618
         }

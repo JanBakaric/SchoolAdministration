@@ -23,13 +23,15 @@ public class Student
 	[ForeignKey(nameof(Class))]
     public int ClassID { get; set; }
     [ForeignKey(nameof(AppUser))]
-    public string? UserID { get; set; } = "";
+    public string? UserID { get; set; }
 
     //Navigacijska svojstva
     [JsonIgnore]
 	public virtual Class? Class { get; set; }
     [JsonIgnore]
     public virtual ICollection<Subject> Subjects { get; set; } = [];
-    [JsonIgnore]
+	[JsonIgnore]
+	public virtual ICollection<Grade> Grades { get; set; } = [];
+	[JsonIgnore]
     public virtual AppUser? User { get; set; }
 }

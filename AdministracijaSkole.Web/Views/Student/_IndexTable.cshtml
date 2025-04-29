@@ -54,10 +54,13 @@
 						<span>No email address provided</span>
 					}
 				</td>
-				<td>
-					<a asp-action="Edit" asp-route-id="@student.StudentID" class="btn btn-primary" style="padding:2px; width:60px">Edit</a>
-					<button type="button" onclick="deleteStudent(@student.StudentID)" class="btn btn-danger btn-delete" style="padding:2px; width:60px">Delete</button>
-				</td>
+				@if (User.IsInRole("Administrator"))
+				{
+					<td>
+						<a asp-action="Edit" asp-route-id="@student.StudentID" class="btn btn-primary" style="padding:2px; width:60px">Edit</a>
+						<button type="button" onclick="deleteStudent(@student.StudentID)" class="btn btn-danger btn-delete" style="padding:2px; width:60px">Delete</button>
+					</td>
+				}
 			</tr>
 		}
 	</tbody>

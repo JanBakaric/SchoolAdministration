@@ -102,10 +102,66 @@ public class StudentController
             return NotFound();
         }
 
-        return View(student);
+        var grades = await _dbContext.Grades
+        .Include(g => g.Subject)
+        .Where(g => g.StudentID == id)
+        .Select(g => new StudentDetailsViewModel.GradeDisplay
+        {
+            SubjectName = g.Subject.SubjectName,
+            Value = g.GradeValue,
+            DateAwarded = g.GradeDateTime
+        })
+        .ToListAsync();
+
+        var viewModel = new StudentDetailsViewModel
+        {
+            Student = student,
+            Grades = grades
+        };
+
+        return View(viewModel);
     }
 
-    [ActionName(nameof(Details)), HttpPost("{id}")]
+	[Authorize(Roles = "Professor"), HttpPost]
+	public async Task<IActionResult> AddGrade([FromForm] int studentId, [FromForm] int value)
+	{
+		var userId = _userManager.GetUserId(User);
+		var professor = await _dbContext.Professors
+            .FirstOrDefaultAsync(p => p.UserID == userId);
+		if (professor == null)
+			return Unauthorized();
+
+		var subject = await _dbContext.Subjects
+            .FirstOrDefaultAsync(s => s.ProfessorID == professor.ProfessorID);
+		if (subject == null)
+			return BadRequest("Professor has no assigned subject.");
+
+		var student = await _dbContext.Students
+		    .Include(s => s.Subjects)
+		    .FirstOrDefaultAsync(s => s.StudentID == studentId);
+		if (student == null)
+			return NotFound("Student not found." + studentId);
+
+		bool studentHasSubject = student.Subjects.Any(s => s.SubjectID == subject.SubjectID);
+		if (!studentHasSubject)
+			return BadRequest("This student is not enrolled in your subject.");
+
+		var grade = new Grade
+		{
+			GradeValue = value,
+            GradeTopic = "",
+			GradeDateTime = DateTime.Now,
+			StudentID = studentId,
+			SubjectID = subject.SubjectID
+		};
+
+		_dbContext.Grades.Add(grade);
+		await _dbContext.SaveChangesAsync();
+
+		return RedirectToAction("Details", new { id = studentId });
+	}
+
+	[ActionName(nameof(Details)), HttpPost("{id}")]
     public async Task<IActionResult> DetailsRequest(int? id = null)
     {
         var student = await _dbContext.Students.FindAsync(id);
@@ -170,7 +226,7 @@ public class StudentController
         return BadRequest(ModelState);
     }
 
-    [ActionName(nameof(Create)), HttpPost]
+    /*[ActionName(nameof(Create)), HttpPost]
     public async Task<IActionResult> CreateRequest([FromBody] Student student)
     {
         var user = new AppUser
@@ -205,7 +261,7 @@ public class StudentController
         await _dbContext.SaveChangesAsync();
 
         return CreatedAtAction(nameof(Details), new { id = student.StudentID }, student);
-    }
+    }*/
 
     //
     //EDIT STUDENT

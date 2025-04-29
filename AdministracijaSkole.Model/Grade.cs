@@ -9,19 +9,19 @@ namespace AdministracijaSkole.Model
 		[Key]
 		public int GradeID { get; set; }
 		public int GradeValue { get; set; }
-		public string GradeTopic { get; set; } = "";
+		public string? GradeTopic { get; set; }
 		public DateTime GradeDateTime { get; set; }
 
 		//Strani ključevi
 		[ForeignKey(nameof(Student))]
-		public int? StudentID { get; set; }
+		public int StudentID { get; set; }
 		[ForeignKey(nameof(Subject))]
-		public int? SubjectID { get; set; }
+		public int SubjectID { get; set; }
 
 		//Navigacijska svojstva
 		[JsonIgnore]
-		public virtual Student? Student { get; set; }
+		public virtual Student Student { get; set; }
 		[JsonIgnore]
-		public virtual Subject? Subject { get; set; }
+		public virtual Subject Subject { get; set; }
 	}
 }
