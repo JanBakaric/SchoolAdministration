@@ -2,6 +2,7 @@
 using AdministracijaSkole.Model;
 using AdministracijaSkole.Web.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,15 +12,16 @@ namespace AdministracijaSkole.Web.Controllers;
 [Route("Api/Student"), ApiController]
 public class StudentController
 (
+    UserManager<AppUser> _userManager,
     SchoolManagerDbContext _dbContext
 ) : Controller
 {
-	//
-	//INDEX STUDENT
-	//
+    //
+    //INDEX STUDENT
+    //
 
-	[HttpGet, AllowAnonymous]
-	public async Task<IActionResult> Index()
+    [HttpGet, Authorize(Roles = "Administrator,Professor")]
+    public async Task<IActionResult> Index()
 	{
 		var students = await _dbContext.Students
             .Include(s => s.Class)
@@ -28,7 +30,7 @@ public class StudentController
 		return View(students);
 	}
 
-	[HttpPost("Search"), AllowAnonymous]
+	[HttpPost("Search"), Authorize(Roles = "Administrator,Professor")]
 	public async Task<IActionResult> Search([FromForm] StudentFilterModel filter)
     {
         var studentQuery = _dbContext.Students
@@ -131,6 +133,35 @@ public class StudentController
     {
         if (ModelState.IsValid)
         {
+            var user = new AppUser
+            {
+                UserName = student.Email,
+                Email = student.Email,
+                PhoneNumber = student.PhoneNumber
+            };
+            var result = await _userManager.CreateAsync(user, "ABcd1234.");
+
+            if(!result.Succeeded)
+            {
+                foreach(var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return BadRequest(ModelState);
+            }
+
+            var roleResult = await _userManager.AddToRoleAsync(user, "Student");
+
+            if (!roleResult.Succeeded)
+            {
+                foreach (var error in roleResult.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return BadRequest(ModelState);
+            }
+
+            student.UserID = user.Id;
             await _dbContext.Students.AddAsync(student);
             await _dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -142,6 +173,34 @@ public class StudentController
     [ActionName(nameof(Create)), HttpPost]
     public async Task<IActionResult> CreateRequest([FromBody] Student student)
     {
+        var user = new AppUser
+        {
+            UserName = student.Email,
+            Email = student.Email,
+            PhoneNumber = student.PhoneNumber
+        };
+        var result = await _userManager.CreateAsync(user, "ABcd1234.");
+
+        if (!result.Succeeded)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
+            return BadRequest(ModelState);
+        }
+
+        var roleResult = await _userManager.AddToRoleAsync(user, "Student");
+
+        if (!roleResult.Succeeded)
+        {
+            foreach (var error in roleResult.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
+            return BadRequest(ModelState);
+        }
+
         await _dbContext.Students.AddAsync(student);
         await _dbContext.SaveChangesAsync();
 
@@ -167,14 +226,20 @@ public class StudentController
 
     [ActionName(nameof(Edit)), HttpPost("Edit/{id}")]
     public async Task<IActionResult> Edit(int id, [FromForm] Student student)
-	{
-		var result = await UpdateStudentAsync(student, id);
-		if (result != null)
-		{
-			return result;
-		}
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
-		return RedirectToAction(nameof(Index));
+        var result = await UpdateStudentAsync(student, id);
+
+        if (result != null)
+        {
+            return result;
+        }
+
+        return RedirectToAction(nameof(Index));
     }
 
     [ActionName(nameof(Edit)), HttpPut("{id}")]
@@ -196,10 +261,29 @@ public class StudentController
     [ActionName(nameof(Delete)), HttpDelete("{id}"), Authorize(Roles = "Administrator")]
     public async Task<IActionResult> Delete(int id)
     {
-        var student = await _dbContext.Students.FindAsync(id);
+        var student = await _dbContext.Students
+            .Include(s => s.User)
+            .FirstOrDefaultAsync(s => s.StudentID == id);
+
         if (student == null)
         {
-            return NotFound();
+            return NotFound("Student not found.");
+        }
+
+        if (student.User != null)
+        {
+            var user = await _userManager.FindByIdAsync(student.UserID);
+
+            if (user != null)
+            {
+                var deleteResult = await _userManager.DeleteAsync(user);
+
+                if (!deleteResult.Succeeded)
+                {
+                    var errors = string.Join(" ", deleteResult.Errors.Select(e => e.Description));
+                    return StatusCode(500, $"Failed to delete user account. {errors}");
+                }
+            }
         }
 
         _dbContext.Students.Remove(student);
@@ -208,11 +292,11 @@ public class StudentController
         return NoContent();
     }
 
-	//
-	//UTILITES
-	//
+    //
+    //UTILITES
+    //
 
-	private void FillDropdownValues()
+    private void FillDropdownValues()
 	{
 		var selectItems = new List<SelectListItem>();
 
@@ -236,35 +320,82 @@ public class StudentController
 		ViewBag.PossibleClasses = selectItems;
 	}
 
-	private async Task<IActionResult> UpdateStudentAsync(Student student, int id)
-	{
-		if (id != student.StudentID)
-		{
-			return BadRequest("Student ID mismatch");
-		}
-
-		try
-		{
-			_dbContext.Update(student);
-			await _dbContext.SaveChangesAsync();
-			return null;
-		}
-		catch (DbUpdateConcurrencyException)
-		{
-			if (!await StudentExists(id))
-			{
-				return NotFound();
-			}
-
-			else
-			{
-				throw;
-			}
-		}
-	}
-
-	private async Task<bool> StudentExists(int id)
+    private async Task<IActionResult> UpdateStudentAsync(Student student, int id)
     {
-        return await _dbContext.Students.AnyAsync(e => e.StudentID != id);
+        if (id != student.StudentID)
+        {
+            return BadRequest("Student ID mismatch");
+        }
+
+        var existingStudent = await _dbContext.Students.FindAsync(id);
+        if (existingStudent == null)
+        {
+            return NotFound("Student not found.");
+        }
+
+        if (!string.IsNullOrEmpty(existingStudent.UserID))
+        {
+            var user = await _userManager.FindByIdAsync(existingStudent.UserID);
+
+            if (user != null)
+            {
+                if (user.Email != student.Email)
+                {
+                    var emailResult = await _userManager.SetEmailAsync(user, student.Email);
+                    var usernameResult = await _userManager.SetUserNameAsync(user, student.Email);
+
+                    if (!emailResult.Succeeded || !usernameResult.Succeeded)
+                    {
+                        var errors = emailResult.Errors.Concat(usernameResult.Errors)
+                            .Select(e => e.Description).ToList();
+                        ModelState.AddModelError("", string.Join(" ", errors));
+                        return BadRequest(ModelState);
+                    }
+                }
+
+                if (!await _userManager.HasPasswordAsync(user))
+                {
+                    var passwordResult = await _userManager.AddPasswordAsync(user, "ABcd1234.");
+                    if (!passwordResult.Succeeded)
+                    {
+                        var errors = passwordResult.Errors.Select(e => e.Description).ToList();
+                        ModelState.AddModelError("", string.Join(" ", errors));
+                        return BadRequest(ModelState);
+                    }
+                }
+            }
+        }
+
+        existingStudent.FirstName = student.FirstName;
+        existingStudent.LastName = student.LastName;
+        existingStudent.DateOfBirth = student.DateOfBirth;
+        existingStudent.Gender = student.Gender;
+        existingStudent.Address = student.Address;
+        existingStudent.Email = student.Email;
+        existingStudent.PhoneNumber = student.PhoneNumber;
+        existingStudent.ClassID = student.ClassID;
+
+        try
+        {
+            _dbContext.Update(existingStudent);
+            await _dbContext.SaveChangesAsync();
+            return null;
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!await StudentExists(id))
+            {
+                return NotFound();
+            }
+            else
+            {
+                throw;
+            }
+        }
+    }
+
+    private async Task<bool> StudentExists(int id)
+    {
+        return await _dbContext.Students.AnyAsync(e => e.StudentID == id);
     }
 }

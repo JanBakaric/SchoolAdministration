@@ -141,13 +141,46 @@ namespace AdministracijaSkole.DAL.Migrations
                     b.ToTable("Classes");
                 });
 
-            modelBuilder.Entity("AdministracijaSkole.Model.Log", b =>
+            modelBuilder.Entity("AdministracijaSkole.Model.Grade", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("GradeID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GradeID"));
+
+                    b.Property<DateTime>("GradeDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GradeTopic")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GradeValue")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StudentID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SubjectID")
+                        .HasColumnType("int");
+
+                    b.HasKey("GradeID");
+
+                    b.HasIndex("StudentID");
+
+                    b.HasIndex("SubjectID");
+
+                    b.ToTable("Grades");
+                });
+
+            modelBuilder.Entity("AdministracijaSkole.Model.Log", b =>
+                {
+                    b.Property<int>("LogID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LogID"));
 
                     b.Property<string>("LogLevel")
                         .IsRequired()
@@ -160,18 +193,18 @@ namespace AdministracijaSkole.DAL.Migrations
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("LogID");
 
                     b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("AdministracijaSkole.Model.Message", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MessageID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageID"));
 
                     b.Property<string>("Body")
                         .IsRequired()
@@ -180,11 +213,11 @@ namespace AdministracijaSkole.DAL.Migrations
                     b.Property<bool>("IsRead")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ReceiverId")
+                    b.Property<string>("ReceiverID")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("SenderId")
+                    b.Property<string>("SenderID")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -195,13 +228,40 @@ namespace AdministracijaSkole.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("MessageID");
 
-                    b.HasIndex("ReceiverId");
+                    b.HasIndex("ReceiverID");
 
-                    b.HasIndex("SenderId");
+                    b.HasIndex("SenderID");
 
                     b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("AdministracijaSkole.Model.Presence", b =>
+                {
+                    b.Property<int>("PresenceID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PresenceID"));
+
+                    b.Property<bool>("IsExcused")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPresent")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("PresenceDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("StudentID")
+                        .HasColumnType("int");
+
+                    b.HasKey("PresenceID");
+
+                    b.HasIndex("StudentID");
+
+                    b.ToTable("Presences");
                 });
 
             modelBuilder.Entity("AdministracijaSkole.Model.Professor", b =>
@@ -233,7 +293,12 @@ namespace AdministracijaSkole.DAL.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserID")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ProfessorID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("Professors");
                 });
@@ -273,9 +338,14 @@ namespace AdministracijaSkole.DAL.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserID")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("StudentID");
 
                     b.HasIndex("ClassID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("Students");
                 });
@@ -437,23 +507,56 @@ namespace AdministracijaSkole.DAL.Migrations
                     b.Navigation("Professor");
                 });
 
+            modelBuilder.Entity("AdministracijaSkole.Model.Grade", b =>
+                {
+                    b.HasOne("AdministracijaSkole.Model.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentID");
+
+                    b.HasOne("AdministracijaSkole.Model.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("SubjectID");
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("AdministracijaSkole.Model.Message", b =>
                 {
                     b.HasOne("AdministracijaSkole.Model.AppUser", "Receiver")
                         .WithMany()
-                        .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("ReceiverID")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AdministracijaSkole.Model.AppUser", "Sender")
                         .WithMany()
-                        .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("SenderID")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Receiver");
 
                     b.Navigation("Sender");
+                });
+
+            modelBuilder.Entity("AdministracijaSkole.Model.Presence", b =>
+                {
+                    b.HasOne("AdministracijaSkole.Model.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentID");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("AdministracijaSkole.Model.Professor", b =>
+                {
+                    b.HasOne("AdministracijaSkole.Model.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("AdministracijaSkole.Model.Student", b =>
@@ -464,7 +567,13 @@ namespace AdministracijaSkole.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("AdministracijaSkole.Model.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID");
+
                     b.Navigation("Class");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("AdministracijaSkole.Model.Subject", b =>

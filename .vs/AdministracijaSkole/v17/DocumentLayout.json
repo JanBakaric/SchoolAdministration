@@ -1,7 +1,100 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Mark\\Documents\\AspNet Project\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\PC\\Desktop\\AspNet Project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\controllers\\professorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\controllers\\professorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\views\\student\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\views\\student\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.model\\approle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|solutionrelative:administracijaskole.model\\approle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\views\\student\\_indextable.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\views\\student\\_indextable.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\views\\student\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\views\\student\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FBA20F6-8D1A-46BE-9DDF-64E61B15AF16}|AdministracijaSkole.DAL\\AdministracijaSkole.DAL.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.dal\\schoolmanagerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FBA20F6-8D1A-46BE-9DDF-64E61B15AF16}|AdministracijaSkole.DAL\\AdministracijaSkole.DAL.csproj|solutionrelative:administracijaskole.dal\\schoolmanagerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.model\\professor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|solutionrelative:administracijaskole.model\\professor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\controllers\\usermanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\controllers\\usermanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.model\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|solutionrelative:administracijaskole.model\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.model\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|solutionrelative:administracijaskole.model\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FBA20F6-8D1A-46BE-9DDF-64E61B15AF16}|AdministracijaSkole.DAL\\AdministracijaSkole.DAL.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.dal\\administracijaskole.dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2FBA20F6-8D1A-46BE-9DDF-64E61B15AF16}|AdministracijaSkole.DAL\\AdministracijaSkole.DAL.csproj|solutionrelative:administracijaskole.dal\\administracijaskole.dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.model\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|solutionrelative:administracijaskole.model\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.model\\log.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|solutionrelative:administracijaskole.model\\log.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\controllers\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\controllers\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\controllers\\classcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\controllers\\classcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.model\\presence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9A7E53A-D7F8-464D-83DB-0A160E862098}|AdministracijaSkole.Model\\AdministracijaSkole.Model.csproj|solutionrelative:administracijaskole.model\\presence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|c:\\users\\pc\\desktop\\aspnet project\\administracijaskole.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A3944DB5-ACDF-4BF7-AB0A-FFB217554E6D}|AdministracijaSkole.Web\\AdministracijaSkole.Web.csproj|solutionrelative:administracijaskole.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +102,312 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeToolTip": "AdministracijaSkole.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAawDQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T08:44:29.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeToolTip": "AdministracijaSkole.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-29T08:44:16.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Views\\Student\\Details.cshtml",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\Views\\Student\\Details.cshtml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Views\\Student\\Details.cshtml",
+              "RelativeToolTip": "AdministracijaSkole.Web\\Views\\Student\\Details.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-29T08:42:12.171Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AdministracijaSkole.DAL",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.DAL\\AdministracijaSkole.DAL.csproj",
+              "RelativeDocumentMoniker": "AdministracijaSkole.DAL\\AdministracijaSkole.DAL.csproj",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.DAL\\AdministracijaSkole.DAL.csproj",
+              "RelativeToolTip": "AdministracijaSkole.DAL\\AdministracijaSkole.DAL.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-29T04:05:13.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Student.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\Student.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Model\\Student.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\Student.cs",
+              "RelativeToolTip": "AdministracijaSkole.Model\\Student.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T04:33:04.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AppUser.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\AppUser.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Model\\AppUser.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\AppUser.cs",
+              "RelativeToolTip": "AdministracijaSkole.Model\\AppUser.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T03:53:33.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StudentController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Controllers\\StudentController.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\Controllers\\StudentController.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Controllers\\StudentController.cs",
+              "RelativeToolTip": "AdministracijaSkole.Web\\Controllers\\StudentController.cs",
+              "ViewState": "AQIAAOwAAAAAAAAAAADwvy8BAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T04:29:47.548Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AppRole.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\AppRole.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Model\\AppRole.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\AppRole.cs",
+              "RelativeToolTip": "AdministracijaSkole.Model\\AppRole.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T07:31:30.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Program.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\Program.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Program.cs",
+              "RelativeToolTip": "AdministracijaSkole.Web\\Program.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABkAAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T03:50:06.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SchoolManagerDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.DAL\\SchoolManagerDbContext.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.DAL\\SchoolManagerDbContext.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.DAL\\SchoolManagerDbContext.cs",
+              "RelativeToolTip": "AdministracijaSkole.DAL\\SchoolManagerDbContext.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAACUAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T04:06:15.749Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "AdministracijaSkole.Web\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACkAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-29T04:14:42.906Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "AdministracijaSkole.Web\\Controllers\\AdminController.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAQwIQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T03:52:41.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Professor.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\Professor.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Model\\Professor.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\Professor.cs",
+              "RelativeToolTip": "AdministracijaSkole.Model\\Professor.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T03:52:27.019Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "MessagesController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Controllers\\MessagesController.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\Controllers\\MessagesController.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Controllers\\MessagesController.cs",
+              "RelativeToolTip": "AdministracijaSkole.Web\\Controllers\\MessagesController.cs",
+              "ViewState": "AQIAAJ8AAAAAAAAAAAAcwMsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T03:53:04.122Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Message.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\Message.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Model\\Message.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\Message.cs",
+              "RelativeToolTip": "AdministracijaSkole.Model\\Message.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T03:51:55.464Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ClassController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Controllers\\ClassController.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\Controllers\\ClassController.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Controllers\\ClassController.cs",
+              "RelativeToolTip": "AdministracijaSkole.Web\\Controllers\\ClassController.cs",
+              "ViewState": "AQIAAKYAAAAAAAAAAAAYwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T03:52:55.103Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Presence.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\Presence.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Model\\Presence.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\Presence.cs",
+              "RelativeToolTip": "AdministracijaSkole.Model\\Presence.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T03:52:34.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Log.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\Log.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Model\\Log.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Model\\Log.cs",
+              "RelativeToolTip": "AdministracijaSkole.Model\\Log.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T03:51:17.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\appsettings.json",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\appsettings.json",
+              "RelativeToolTip": "AdministracijaSkole.Web\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-29T03:50:10.002Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_IndexTable.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Views\\Student\\_IndexTable.cshtml",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\Views\\Student\\_IndexTable.cshtml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Views\\Student\\_IndexTable.cshtml",
+              "RelativeToolTip": "AdministracijaSkole.Web\\Views\\Student\\_IndexTable.cshtml",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAADMAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-29T08:13:48.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Views\\Student\\Index.cshtml",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\Views\\Student\\Index.cshtml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Views\\Student\\Index.cshtml",
+              "RelativeToolTip": "AdministracijaSkole.Web\\Views\\Student\\Index.cshtml",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACAAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-29T08:13:14.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProfessorController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Controllers\\ProfessorController.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\Controllers\\ProfessorController.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Controllers\\ProfessorController.cs",
+              "RelativeToolTip": "AdministracijaSkole.Web\\Controllers\\ProfessorController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T04:27:52.728Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UserManagementController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Controllers\\UserManagementController.cs",
+              "RelativeDocumentMoniker": "AdministracijaSkole.Web\\Controllers\\UserManagementController.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\AspNet Project\\AdministracijaSkole.Web\\Controllers\\UserManagementController.cs",
+              "RelativeToolTip": "AdministracijaSkole.Web\\Controllers\\UserManagementController.cs",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAwwG0AAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T03:55:57.554Z",
+              "EditorCaption": ""
             }
           ]
         }

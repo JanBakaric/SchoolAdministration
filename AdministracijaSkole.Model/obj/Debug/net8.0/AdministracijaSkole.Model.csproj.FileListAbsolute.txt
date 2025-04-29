@@ -1,0 +1,13 @@
+C:\Users\PC\Desktop\AspNet Project\AdministracijaSkole.Model\bin\Debug\net8.0\AdministracijaSkole.Model.deps.json
+C:\Users\PC\Desktop\AspNet Project\AdministracijaSkole.Model\bin\Debug\net8.0\AdministracijaSkole.Model.dll
+C:\Users\PC\Desktop\AspNet Project\AdministracijaSkole.Model\bin\Debug\net8.0\AdministracijaSkole.Model.pdb
+C:\Users\PC\Desktop\AspNet Project\AdministracijaSkole.Model\obj\Debug\net8.0\AdministracijaSkole.Model.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\AspNet Project\AdministracijaSkole.Model\obj\Debug\net8.0\AdministracijaSkole.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Desktop\AspNet Project\AdministracijaSkole.Model\obj\Debug\net8.0\AdministracijaSkole.Model.AssemblyInfoInputs.cache
+C:\Users\PC\Desktop\AspNet Project\AdministracijaSkole.Model\obj\Debug\net8.0\AdministracijaSkole.Model.AssemblyInfo.cs
+C:\Users\PC\Desktop\AspNet Project\AdministracijaSkole.Model\obj\Debug\net8.0\AdministracijaSkole.Model.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\AspNet Project\AdministracijaSkole.Model\obj\Debug\net8.0\AdministracijaSkole.Model.sourcelink.json
+C:\Users\PC\Desktop\AspNet Project\AdministracijaSkole.Model\obj\Debug\net8.0\AdministracijaSkole.Model.dll
+C:\Users\PC\Desktop\AspNet Project\AdministracijaSkole.Model\obj\Debug\net8.0\refint\AdministracijaSkole.Model.dll
+C:\Users\PC\Desktop\AspNet Project\AdministracijaSkole.Model\obj\Debug\net8.0\AdministracijaSkole.Model.pdb
+C:\Users\PC\Desktop\AspNet Project\AdministracijaSkole.Model\obj\Debug\net8.0\ref\AdministracijaSkole.Model.dll

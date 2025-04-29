@@ -13,7 +13,7 @@ public class Student
     public DateTime DateOfBirth { get; set; }
     public char Gender { get; set; }
     public string? Address { get; set; }
-    public string? Email { get; set; }
+    public string Email { get; set; } = "";
     public string? PhoneNumber { get; set; }
 
 	[JsonIgnore]
@@ -22,10 +22,14 @@ public class Student
 	//Strani ključevi
 	[ForeignKey(nameof(Class))]
     public int ClassID { get; set; }
+    [ForeignKey(nameof(AppUser))]
+    public string? UserID { get; set; } = "";
 
-	//Navigacijska svojstva
-	[JsonIgnore]
+    //Navigacijska svojstva
+    [JsonIgnore]
 	public virtual Class? Class { get; set; }
     [JsonIgnore]
     public virtual ICollection<Subject> Subjects { get; set; } = [];
+    [JsonIgnore]
+    public virtual AppUser? User { get; set; }
 }

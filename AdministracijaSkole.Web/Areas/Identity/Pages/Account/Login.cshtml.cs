@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using AdministracijaSkole.Model;
+using AdministracijaSkole.DAL;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdministracijaSkole.Web.Areas.Identity.Pages.Account
 {
@@ -22,11 +24,21 @@ namespace AdministracijaSkole.Web.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SchoolManagerDbContext _dbContext;
 
-        public LoginModel(SignInManager<AppUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel
+        (
+            SignInManager<AppUser> signInManager, 
+            ILogger<LoginModel> logger,
+            UserManager<AppUser> userManager,
+            SchoolManagerDbContext dbContext
+        )
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
+            _dbContext = dbContext;
         }
 
         [BindProperty]
@@ -80,9 +92,20 @@ namespace AdministracijaSkole.Web.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+
+                    if (await _userManager.IsInRoleAsync(user, "Student"))
+                    {
+                        var student = await _dbContext.Students.FirstOrDefaultAsync(s => s.UserID == user.Id);
+                        if (student != null)
+                        {
+                            return RedirectToAction("Details", "Student", new { id = student.StudentID });
+                        }
+                    }
+
                     return LocalRedirect(returnUrl);
                 }
+
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
