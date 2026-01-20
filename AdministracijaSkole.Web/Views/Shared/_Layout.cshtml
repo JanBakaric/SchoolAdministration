@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,6 +27,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @if (User.IsInRole("Administrator"))
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Index">News</a>
+                        </li>
+                        }
                         @if (User.IsInRole("Student") || User.IsInRole("Professor") || User.IsInRole("Administrator"))
                         {
                             <li class="nav-item">
@@ -54,7 +60,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Logs</a>
-                                    </li>
+                                </li>
                             }
                         }
                     </ul>
@@ -71,7 +77,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - AdministracijaSkole.Web - <a href="#">Privacy</a>
+            &copy; 2026 - Administracija škole - <a href="#">Privacy</a>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
