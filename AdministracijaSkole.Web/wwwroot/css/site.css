@@ -1,26 +1,136 @@
-html {
-    font-size: 14px;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    color: #333;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
 }
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
+    body > .container, main[role="main"] {
+        flex: 1 0 auto;
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 0 20px;
     }
+
+footer.footer {
+    flex-shrink: 0;
+    background-color: #f8f9fa;
+    color: #555;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.9rem;
 }
 
-html {
-    position: relative;
-    min-height: 100%;
+.navbar {
+    background: linear-gradient(90deg, #2f6fed, #1a3db8) !important;
 }
 
-body {
-    margin-bottom: 60px;
+    .navbar a.nav-link, .navbar .navbar-brand, .navbar .nav-item .dropdown-toggle {
+        color: white !important;
+        transition: color 0.3s ease, opacity 0.3s ease;
+    }
+
+        .navbar a.nav-link:hover, .navbar .nav-item .dropdown-toggle:hover, .navbar .navbar-brand:hover {
+            color: #cce0ff !important;
+            opacity: 0.8;
+        }
+
+    .navbar button.btn-link {
+        color: white !important;
+        background: none !important;
+        border: none !important;
+        padding: 0.375rem 0.5rem; 
+        font-size: 1rem;
+        cursor: pointer;
+        text-decoration: none !important;
+        transition: color 0.3s ease, opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+        .navbar button.btn-link:hover {
+            color: #cce0ff !important;
+            opacity: 0.8 !important;
+        }
+
+
+button, input, textarea, select {
+    font-family: inherit;
+    font-size: 1rem;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    height: 50px;
-    left: 0;
-    right: 0;
+button {
+    background-color: #2f6fed;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+    button:hover {
+        background-color: #1a3db8;
+    }
+
+a {
+    color: #2f6fed;
+    text-decoration: none;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+    a:hover {
+        color: #1a3db8;
+        opacity: 0.9;
+    }
+
+.news-wrapper {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 10px;
+}
+
+.news-item {
+    margin-bottom: 30px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .news-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+.news-header {
+    background: linear-gradient(90deg, #2f6fed, #1a3db8);
+    color: white;
+    font-weight: 700;
+    font-size: 1.3rem;
+    padding: 18px 22px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.news-date {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.news-body {
+    background-color: #f9f9f9;
+    padding: 30px 25px;
+    border-radius: 0 0 10px 10px;
+    border: 1px solid #ddd;
+    min-height: 150px;
+    line-height: 1.6;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
