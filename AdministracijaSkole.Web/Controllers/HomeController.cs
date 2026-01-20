@@ -1,17 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using AdministracijaSkole.Web.Models;
+using Microsoft.EntityFrameworkCore;
+using AdministracijaSkole.DAL;
 
 namespace AdministracijaSkole.Web.Controllers;
 
 public class HomeController(
-    ILogger<HomeController> _logger) : Controller
+    ILogger<HomeController> _logger, SchoolManagerDbContext _context) : Controller
 {
     public IActionResult Index()
     {
-        _logger.LogInformation("Home page loaded at {Time}", DateTime.UtcNow);
-        return View();
+        var systemUserId = _context.Users
+            .Where(u => u.UserName == SystemUsers.UserName)
+            .Select(u => u.Id)
+        .First();
+
+        var news = _context.Messages
+            .Where(m => m.ReceiverID == systemUserId)
+            .OrderByDescending(m => m.SentAt)
+            .ToList();
+
+        return View(news);
     }
+
 
     public IActionResult Privacy(string lang)
     {
