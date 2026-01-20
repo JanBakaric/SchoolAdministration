@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Message>
+
+@{
+    ViewData["Title"] = "News";
+}
+
+<h2>News</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create News</a>
+</p>
+
+@foreach (var item in Model)
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">@item.Subject</h5>
+            <p class="card-text">@item.Body</p>
+
+            <form asp-action="DeleteConfirmed"
+                  asp-route-id="@item.MessageID"
+                  method="post"
+                  class="d-inline">
+                @Html.AntiForgeryToken()
+                <button type="submit"
+                        class="btn btn-sm btn-danger"
+                        onclick="return confirm('Delete this news?');">
+                    Delete
+                </button>
+            </form>
+        </div>
+    </div>
+}

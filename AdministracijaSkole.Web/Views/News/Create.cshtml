@@ -1,0 +1,24 @@
+﻿@model Message
+
+@{
+    ViewData["Title"] = "Create News";
+}
+
+<h2>Create News</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group mb-3">
+        <label asp-for="Subject"></label>
+        <input asp-for="Subject" class="form-control" />
+        <span asp-validation-for="Subject" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Body"></label>
+        <textarea asp-for="Body" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Body" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>
